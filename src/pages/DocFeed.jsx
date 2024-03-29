@@ -7,7 +7,7 @@ import { db } from '../firebase/config';
 export default function DocFeed() {
   const [formData, setFormData] = useState({
     name: "",
-    designation: "",
+    department: "",
     idno: "",
     category: "",
     status: "",
@@ -26,7 +26,7 @@ export default function DocFeed() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    if (!formData.name || !formData.designation || !formData.idno || !formData.category || !formData.status || !formData.phone || !formData.email || !formData.description) {
+    if (!formData.name || !formData.department || !formData.idno || !formData.category || !formData.status || !formData.phone || !formData.email || !formData.description) {
       console.error("One or more required fields are empty");
       return; // Exit early if any required field is empty
     }
@@ -41,7 +41,7 @@ export default function DocFeed() {
       // Clear the form fields after submission
       setFormData({
         name: "",
-        designation: "",
+        department: "",
         idno: "",
         category: "",
         status: "",
@@ -67,7 +67,7 @@ export default function DocFeed() {
               <section className="bg-blue-100 p-4 shadow">
                 <div className="md:flex">
                   <h2 className="uppercase tracking-wide text-sm sm:text-lg mb-6">
-                    Send Feedback Regarding Diagnosis
+                    Create Report Regarding Diagnosis
                   </h2>
                 </div>
                 <form onSubmit={handleSubmit} >
@@ -97,14 +97,14 @@ export default function DocFeed() {
                       <div className="md:flex mb-4">
                         <div className="md:flex-1 md:pr-3">
                           <label className="block uppercase tracking-wide text-charcoal-darker text-xs font-bold">
-                            Designation
+                            Department
                           </label>
                           <input
                             className="w-full shadow-inner p-4 border-0"
                             type="text"
-                            name="designation"
-                            placeholder="Doctor"
-                            value={formData.designation}
+                            name="department"
+                            placeholder="Radiology"
+                            value={formData.department}
                             onChange={handleChange}
                           />
                         </div>
