@@ -1,12 +1,8 @@
 import React from "react";
-import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import TypingText from "../components/TypingText";
 
 export default function DocLogin() {
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
-  const [error, setError] = useState(null);
   const navigate = useNavigate();
 
   const Submit = () => {
@@ -29,20 +25,18 @@ export default function DocLogin() {
             <h1 className="text-3xl font-semibold mb-6 text-black text-center">
               Patient Login
             </h1>
-            {error && <p className="text-red-500">{error}</p>}
             <form className="space-y-4">
               <div>
                 <label
                   htmlFor="email"
                   className="block text-sm font-medium text-gray-700"
                 >
-                  Email
+                  PatientID
                 </label>
                 <input
                   type="text"
                   id="email"
                   name="email"
-                  value={email}
                   className="mt-1 p-2 w-full border rounded-lg focus:border-gray-200 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-300 transition-colors duration-300"
                 />
               </div>
@@ -57,7 +51,6 @@ export default function DocLogin() {
                   type="password"
                   id="password"
                   name="password"
-                  value={password}
                   className="mt-1 p-2 w-full border rounded-lg focus:border-gray-200 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-300 transition-colors duration-300"
                 />
               </div>
