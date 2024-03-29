@@ -6,7 +6,7 @@ const TypingText = () => {
     const typed = new Typed(".typing-text", {
       strings: ["Amrit", "अमृत", "અમૃત", "அம்ரித்"],
       loop: true,
-      typeSpeed: 100,
+      typeSpeed: 70,
       showCursor: false,
     });
 
