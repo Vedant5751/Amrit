@@ -1,5 +1,5 @@
-import React, { useState } from "react";
-import { addDoc, collection } from "firebase/firestore";
+import React, { useState, useEffect } from "react";
+import { addDoc, collection, onSnapshot, query, orderBy } from "firebase/firestore";
 import { db } from "../firebase/config";
 import Sidebar from "../components/Sidebar";
 
@@ -7,39 +7,34 @@ export default function Inbox() {
   const [messages, setMessages] = useState([]);
   const [inputMessage, setInputMessage] = useState("");
 
+  useEffect(() => {
+    const q = query(collection(db, "messages"), orderBy("timestamp"));
+    const unsubscribe = onSnapshot(q, (snapshot) => {
+      const updatedMessages = snapshot.docs.map((doc) => doc.data());
+      setMessages(updatedMessages);
+    });
+
+    return () => unsubscribe();
+  }, []);
+
   const handleInputChange = (e) => {
     setInputMessage(e.target.value);
   };
 
-  const sendMessageToFirestore = async (message) => {
-    try {
-      await addDoc(collection(db, "messages"), {
-        text: message.text,
-        sender: message.sender,
-        timestamp: message.timestamp,
-      });
-    } catch (error) {
-      console.error("Error adding message to Firestore: ", error);
-    }
-  };
-
-  const handleSendMessage = () => {
+  const handleSendMessage = async () => {
     if (inputMessage.trim() !== "") {
-      // Create a message object with required fields
       const newMessage = {
         text: inputMessage,
         sender: "user",
-        timestamp: new Date().toISOString(), // Assuming timestamp is a string
+        timestamp: new Date().toISOString(),
       };
 
-      // Add the message to Firestore
-      sendMessageToFirestore(newMessage);
-
-      // Update local state with the new message
-      setMessages((prevMessages) => [...prevMessages, newMessage]);
-
-      // Clear the input field
-      setInputMessage("");
+      try {
+        await addDoc(collection(db, "messages"), newMessage);
+        setInputMessage("");
+      } catch (error) {
+        console.error("Error sending message: ", error);
+      }
     }
   };
 
