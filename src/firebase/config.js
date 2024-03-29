@@ -2,6 +2,7 @@
 import { initializeApp } from "firebase/app";
 import { getAuth } from "firebase/auth";
 import { getFirestore } from "firebase/firestore";
+// import { getDatabase } from "firebase/database"; 
 
 // TODO: Add SDKs for Firebase products that you want to use
 // https://firebase.google.com/docs/web/setup#available-libraries
@@ -14,11 +15,13 @@ const firebaseConfig = {
   storageBucket: "vikiran-28f65.appspot.com",
   messagingSenderId: "998439364766",
   appId: "1:998439364766:web:44ab5ebb1022cbf3c1338f",
+  // databaseURL: "https://vikiran-28f65-default-rtdb.firebaseio.com/",
 };
 
 // Initialize Firebase
 const app = initializeApp(firebaseConfig);
 const auth = getAuth(app);
 const db = getFirestore(app);
+// const database = getDatabase(app);
 
-export { app, auth, db };
+export { app, auth, db, };
