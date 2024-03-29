@@ -1,6 +1,7 @@
 "use client";
 import React from "react";
 import { SparklesCore } from "./sparkles";
+import TypingText from "./TypingText";
 
 export function SparklesPreview() {
   return (
@@ -17,7 +18,7 @@ export function SparklesPreview() {
         />
       </div>
       <h1 className="md:text-7xl text-3xl lg:text-6xl font-bold text-center text-white relative z-20">
-        Amrit
+        <TypingText />
       </h1>
     </div>
   );
