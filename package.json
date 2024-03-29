@@ -10,6 +10,7 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "@tabler/icons-react": "^3.1.0",
     "@tsparticles/engine": "^3.3.0",
     "@tsparticles/react": "^3.0.0",
     "@tsparticles/slim": "^3.3.0",
@@ -24,6 +25,7 @@
     "react-modal": "^3.16.1",
     "react-router-dom": "^6.22.3",
     "simplex-noise": "^4.0.1",
+    "sonner": "^1.4.41",
     "tailwind-merge": "^2.2.2",
     "typed.js": "^2.1.0"
   },
