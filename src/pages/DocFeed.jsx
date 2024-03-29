@@ -60,7 +60,7 @@ export default function DocFeed() {
       <div className="">
         <Sidebar />
       </div>
-      <div className="p-4 sm:ml-64">
+      {/* {<div className="p-4 sm:ml-64">
         <div className="p-4 border-2 border-gray-200 border-dashed rounded-lg dark:border-gray-700 mt-14">
           <body className="bg-cream text-charcoal min-h-screen font-sans leading-normal overflow-x-hidden lg:overflow-auto ">
             <main className="flex-1 md:p-0 lg:pt-8 lg:px-8 md:ml-24 flex flex-col ">
@@ -208,7 +208,7 @@ export default function DocFeed() {
                   </div>
                   <div className="md:flex mb-6 border border-t-1 border-b-0 border-x-0 border-cream-dark">
                     <div className="md:flex-1 px-3 text-center md:text-right">
-                      {/* <input type="hidden" name="submission" value="0" /> */}
+                      
                       <input
                         className="button border border-black p-2 rounded-lg text-white bg-blue-500 hover:bg-brick-dark"
                         type="submit"
@@ -221,7 +221,7 @@ export default function DocFeed() {
             </main>
           </body>
         </div>
-      </div>
+      </div>} */}
     </>
   );
 }

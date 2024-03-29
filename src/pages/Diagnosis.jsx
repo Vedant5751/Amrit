@@ -1,6 +1,6 @@
-import React, { useState } from 'react';
-import Sidebar from '../components/Sidebar';
-import queryFunction from '../utils/queryFunction';
+import React, { useState } from "react";
+import Sidebar from "../components/Sidebar";
+import queryFunction from "../utils/queryFunction";
 
 function Diagnosis() {
   const [selectedFile, setSelectedFile] = useState(null);
@@ -37,7 +37,7 @@ function Diagnosis() {
       let normalPercentage = 0;
 
       // Simulate loading time for ML model
-      await new Promise(resolve => setTimeout(resolve, 2000));
+      await new Promise((resolve) => setTimeout(resolve, 2000));
 
       if (selectedFile.name === "download.jpeg") {
         pneumoniaPercentage = 12.7;
@@ -48,7 +48,7 @@ function Diagnosis() {
       } else {
         const formData = new FormData();
         formData.append("file", selectedFile);
-        const response = await queryFunction(formData); 
+        const response = await queryFunction(formData);
         console.log(response);
 
         // Assuming the response contains information about pneumonia and normal statuses
@@ -73,7 +73,7 @@ function Diagnosis() {
       <div>
         <Sidebar />
       </div>
-      <div className="p-4 sm:ml-64">
+      {/* {<div className="p-4 sm:ml-64">
         <div className="p-4 border-2 border-gray-200 border-dashed rounded-lg dark:border-gray-700 mt-14" onDrop={handleDrop} onDragOver={handleDragOver}>
           <div>
             <h1 className="text-3xl font-semibold mb-8">AI Diagnosis</h1>
@@ -116,7 +116,7 @@ function Diagnosis() {
             </div>
           )}
         </div>
-      </div>
+      </div>} */}
     </>
   );
 }
