@@ -1,6 +1,7 @@
 import React from "react";
 import { WavyBackground } from "../components/wavy-background";
 import { SparklesPreview } from "../components/SparklesPreview";
+import { TailwindcssButtons } from "../components/Button";
 
 export default function Landing() {
   return (
@@ -10,6 +11,9 @@ export default function Landing() {
       </div>
       <div className="relative opacity-50">
         <SparklesPreview />
+      </div>
+      <div className="absolute top-20 left-0 w-full h-full flex justify-center items-center">
+        <TailwindcssButtons />
       </div>
     </>
   );
