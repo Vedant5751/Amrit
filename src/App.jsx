@@ -2,6 +2,7 @@ import React from "react";
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import Landing from "./pages/Landing";
 import DocLogin from "./pages/DocLogin";
+import PatientLogin from "./pages/PatientLogin";
 import DocHome from "./pages/DocHome";
 import DocFeed from "./pages/DocFeed";
 import DocPatient from "./pages/DocPatient";
@@ -18,6 +19,7 @@ function App() {
         <Routes>
           <Route path="/" element={<Landing />} />
           <Route path="/doclogin" element={<DocLogin />} />
+          <Route path="/patientlogin" element={<PatientLogin />} />
           <Route path="/dochome" element={<DocHome />} />
           <Route path="/docfeed" element={<DocFeed />} />
           <Route path="/docpatient" element={<DocPatient />} />
