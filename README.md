@@ -1,8 +1,23 @@
-# React + Vite
+# Amrit
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+## Key Features
 
-Currently, two official plugins are available:
+- Advanced Diagnostic Capabilities
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+  - Amrit incorporates pre-trained machine learning models to analyze medical images such as X-rays, MRIs, CT scans, and blood tests.
+
+- Seamless Workflow Integration
+
+  - Amrit seamlessly integrates into existing healthcare workflows, offering a centralized platform for doctors to manage patient appointments, access diagnostic reports, and communicate with patients and staff.
+
+- User-Friendly Interface
+
+  - Designed with a user-centric approach, Vikiran prioritizes ease of use, intuitive navigation, and customizable features to meet the unique needs of healthcare professionals.
+
+- Comprehensive Patient Management
+
+  - Provides comprehensive patient management features, including appointment scheduling, communication tools, and access to diagnostic reports, fostering efficient patient care coordination.
+
+- Continuous Innovation and Improvement
+
+  - Committed to continuous innovation, AAmrit evolves with emerging technologies and healthcare trends, integrating additional ML models and expanding diagnostic capabilities to enhance patient care outcomes.
