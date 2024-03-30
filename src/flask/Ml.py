@@ -6,7 +6,7 @@ import skimage
 import torch
 import torchvision
 
-app = Flask(name)
+app = Flask(__name__)
 CORS(app)  # Add CORS support to your Flask app
 
 # Load the pre-trained model
@@ -56,5 +56,5 @@ def predict():
 
     return jsonify(predictions)
 
-if name == 'main':
+if __name__ == '__main__':
     app.run(debug=True)

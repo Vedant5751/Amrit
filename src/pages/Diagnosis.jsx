@@ -4,6 +4,7 @@ import { collection, addDoc } from "firebase/firestore";
 import { db, storage } from "../firebase/config";
 import { ref, uploadBytes, getDownloadURL } from "firebase/storage";
 import queryFunction from "../utils/queryFunction";
+import AI from '../components/AI'
 
 
 function Diagnosis() {
@@ -32,24 +33,24 @@ function Diagnosis() {
       alert("Please select a file.");
       return;
     }
-  
+
     setLoading(true);
     setLoadingModel(true);
-  
+
     try {
       let pneumoniaPercentage = 0;
       let normalPercentage = 0;
-  
+
       // Simulate loading time for ML model
       await new Promise((resolve) => setTimeout(resolve, 2000));
-  
+
       // Upload the selected file to Firestore storage
       const storageRef = ref(storage, `images/${selectedFile.name}`);
       await uploadBytes(storageRef, selectedFile);
-  
+
       // Get the download URL of the uploaded file
       const downloadURL = await getDownloadURL(storageRef);
-  
+
       // Assuming the response contains information about pneumonia and normal statuses
       if (selectedFile.name === "download.jpeg") {
         pneumoniaPercentage = 12.7;
@@ -62,12 +63,12 @@ function Diagnosis() {
         formData.append("file", selectedFile);
         const response = await queryFunction(formData);
         console.log(response);
-  
+
         const { pneumonia, normal } = response;
         pneumoniaPercentage = pneumonia * 100;
         normalPercentage = normal * 100;
       }
-  
+
       // Add a new document to the 'reports' collection in Firestore
       const reportRef = await addDoc(collection(db, 'reports'), {
         imageURL: downloadURL,
@@ -75,28 +76,29 @@ function Diagnosis() {
         normalPercentage,
         timestamp: new Date()
       });
-  
+
       console.log("Report added with ID: ", reportRef.id);
-  
+
       // Update progress bars
       setPneumoniaProgress(pneumoniaPercentage);
       setNormalProgress(normalPercentage);
     } catch (error) {
       console.error("Error querying:", error);
     }
-  
+
     setLoadingModel(false);
     setLoading(false);
   };
-  
+
 
   return (
     <>
       <div>
         <Sidebar />
+        <AI/>
       </div>
       {
-        <div className="p-4 sm:ml-64">
+        /*<div className="p-4 sm:ml-64">
           <div
             className="p-4 border-2 border-gray-200 border-dashed rounded-lg dark:border-gray-700 mt-14"
             onDrop={handleDrop}
@@ -133,7 +135,7 @@ function Diagnosis() {
               {loadingModel && (
                 <p className="text-lg mt-4 mb-4">ML model is loading...</p>
               )}
-              {/* <div className="mt-4">
+               <div className="mt-4">
               <p className="text-lg font-semibold mb-2">Pneumonia Progress:</p>
               <div className={`relative pt-1`}>
                 <div className="overflow-hidden h-4 text-xs flex rounded-md bg-blue-200">
@@ -148,7 +150,7 @@ function Diagnosis() {
                   <div style={{ width: `${normalProgress}%` }} className="shadow-none flex flex-col text-center whitespace-nowrap text-white justify-center bg-green-500">{normalProgress}%</div>
                 </div>
               </div>
-            </div> */}
+            </div> 
             </div>
             {selectedFile && (
               <div className="mt-8">
@@ -161,8 +163,9 @@ function Diagnosis() {
               </div>
             )}
           </div>
-        </div>
+        </div>*/
       }
+      
     </>
   );
 }

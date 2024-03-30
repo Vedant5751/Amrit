@@ -12,6 +12,7 @@ import Calendar from "./pages/Calendar";
 import Inbox from "./pages/Inbox";
 import PatientInbox from "./pages/PatientInbox";
 import DocProfile from "./pages/DocProfile";
+import AI from '../src/components/AI'
 
 function App() {
 
