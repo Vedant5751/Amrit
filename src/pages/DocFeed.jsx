@@ -62,7 +62,7 @@ export default function DocFeed() {
       </div>
        {<div className="p-4 sm:ml-64">
         <div className="p-4 border-2 border-gray-200 border-dashed rounded-lg dark:border-gray-700 mt-14">
-          <body className="bg-cream text-charcoal min-h-screen font-sans leading-normal overflow-x-hidden lg:overflow-auto ">
+          <div className="bg-cream text-charcoal min-h-screen font-sans leading-normal overflow-x-hidden lg:overflow-auto ">
             <main className="flex-1 md:p-0 lg:pt-8 lg:px-8 md:ml-24 flex flex-col ">
               <section className="bg-blue-100 p-4 shadow">
                 <div className="md:flex">
@@ -219,7 +219,7 @@ export default function DocFeed() {
                 </form>
               </section>
             </main>
-          </body>
+          </div>
         </div>
       </div>} 
     </>
