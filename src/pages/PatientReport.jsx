@@ -10,7 +10,7 @@ export default function PatientReport() {
   useEffect(() => {
     const fetchFileUrl = async () => {
       try {
-        const imageUrl = await getDownloadURL(ref(storage, "images/realpic3-removebg-preview.jpg"));
+        const imageUrl = await getDownloadURL(ref(storage, "images/download.jpeg")); // Update the path to your image
         setFileUrl(imageUrl);
         setLoading(false);
       } catch (error) {
@@ -22,9 +22,19 @@ export default function PatientReport() {
     fetchFileUrl();
   }, []); // Empty dependency array ensures this effect runs only once after initial render
 
-  const handleDownload = () => {
-    // Implement download logic here if needed
-    alert("Download functionality will be implemented here.");
+  const handleDownload = async () => {
+    try {
+      const response = await fetch(fileUrl);
+      const blob = await response.blob();
+      const url = window.URL.createObjectURL(new Blob([blob]));
+      const link = document.createElement('a');
+      link.href = url;
+      link.setAttribute('download', 'image.jpeg'); // Set the file name
+      document.body.appendChild(link);
+      link.click();
+    } catch (error) {
+      console.error("Error downloading file:", error);
+    }
   };
 
   return (
