@@ -1,6 +1,10 @@
 import React, { useState } from "react";
 import Sidebar from "../components/Sidebar";
+import { collection, addDoc } from "firebase/firestore";
+import { db, storage } from "../firebase/config";
+import { ref, uploadBytes, getDownloadURL } from "firebase/storage";
 import queryFunction from "../utils/queryFunction";
+
 
 function Diagnosis() {
   const [selectedFile, setSelectedFile] = useState(null);
@@ -28,17 +32,25 @@ function Diagnosis() {
       alert("Please select a file.");
       return;
     }
-
+  
     setLoading(true);
     setLoadingModel(true);
-
+  
     try {
       let pneumoniaPercentage = 0;
       let normalPercentage = 0;
-
+  
       // Simulate loading time for ML model
       await new Promise((resolve) => setTimeout(resolve, 2000));
-
+  
+      // Upload the selected file to Firestore storage
+      const storageRef = ref(storage, `images/${selectedFile.name}`);
+      await uploadBytes(storageRef, selectedFile);
+  
+      // Get the download URL of the uploaded file
+      const downloadURL = await getDownloadURL(storageRef);
+  
+      // Assuming the response contains information about pneumonia and normal statuses
       if (selectedFile.name === "download.jpeg") {
         pneumoniaPercentage = 12.7;
         normalPercentage = 87.3;
@@ -50,23 +62,33 @@ function Diagnosis() {
         formData.append("file", selectedFile);
         const response = await queryFunction(formData);
         console.log(response);
-
-        // Assuming the response contains information about pneumonia and normal statuses
+  
         const { pneumonia, normal } = response;
         pneumoniaPercentage = pneumonia * 100;
         normalPercentage = normal * 100;
       }
-
+  
+      // Add a new document to the 'reports' collection in Firestore
+      const reportRef = await addDoc(collection(db, 'reports'), {
+        imageURL: downloadURL,
+        pneumoniaPercentage,
+        normalPercentage,
+        timestamp: new Date()
+      });
+  
+      console.log("Report added with ID: ", reportRef.id);
+  
       // Update progress bars
       setPneumoniaProgress(pneumoniaPercentage);
       setNormalProgress(normalPercentage);
     } catch (error) {
       console.error("Error querying:", error);
     }
-
+  
     setLoadingModel(false);
     setLoading(false);
   };
+  
 
   return (
     <>
