@@ -1,5 +1,7 @@
 import React, { useState } from "react";
 import axios from "axios";
+import { storage } from "../firebase/config"; // Import Firebase storage
+import { ref, uploadBytes } from "firebase/storage"; // Import Firebase storage functions
 import Sidebar from "./Sidebar";
 
 const AI = () => {
@@ -17,10 +19,14 @@ const AI = () => {
       return;
     }
 
-    const formData = new FormData();
-    formData.append("image", selectedFile);
-
+    const storageRef = ref(storage, `images/${selectedFile.name}`);
     try {
+      // Upload file to Firebase Storage
+      await uploadBytes(storageRef, selectedFile);
+
+      // Perform prediction using the uploaded file
+      const formData = new FormData();
+      formData.append("image", selectedFile);
       const response = await axios.post(
         "http://127.0.0.1:5000/predict",
         formData,
@@ -33,19 +39,8 @@ const AI = () => {
       setPredictions(response.data);
       setError(null);
     } catch (error) {
-      if (error.response) {
-        
-        setError(`Server responded with status ${error.response.status}`);
-        console.error("Server error:", error.response.data);
-      } else if (error.request) {
-        
-        setError("No response received from server");
-        console.error("No response received:", error.request);
-      } else {
-        
-        setError("Error uploading file. Please try again later.");
-        console.error("Error uploading file:", error.message);
-      }
+      setError("Error uploading file. Please try again later.");
+      console.error("Error uploading file:", error);
     }
   };
 
