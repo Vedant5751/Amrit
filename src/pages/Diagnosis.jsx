@@ -4,8 +4,7 @@ import { collection, addDoc } from "firebase/firestore";
 import { db, storage } from "../firebase/config";
 import { ref, uploadBytes, getDownloadURL } from "firebase/storage";
 import queryFunction from "../utils/queryFunction";
-import AI from '../components/AI'
-
+import AI from "../components/AI";
 
 function Diagnosis() {
   const [selectedFile, setSelectedFile] = useState(null);
@@ -70,11 +69,11 @@ function Diagnosis() {
       }
 
       // Add a new document to the 'reports' collection in Firestore
-      const reportRef = await addDoc(collection(db, 'reports'), {
+      const reportRef = await addDoc(collection(db, "reports"), {
         imageURL: downloadURL,
         pneumoniaPercentage,
         normalPercentage,
-        timestamp: new Date()
+        timestamp: new Date(),
       });
 
       console.log("Report added with ID: ", reportRef.id);
@@ -90,15 +89,21 @@ function Diagnosis() {
     setLoading(false);
   };
 
-
   return (
     <>
       <div>
         <Sidebar />
-        <AI/>
       </div>
-      {
-        /*<div className="p-4 sm:ml-64">
+      <div className="p-4 sm:ml-64">
+        <div
+          className="p-4 border-2 border-gray-200 border-dashed rounded-lg dark:border-gray-700 mt-14"
+          onDrop={handleDrop}
+          onDragOver={handleDragOver}
+        >
+          <AI />
+        </div>
+      </div>
+      {/*<div className="p-4 sm:ml-64">
           <div
             className="p-4 border-2 border-gray-200 border-dashed rounded-lg dark:border-gray-700 mt-14"
             onDrop={handleDrop}
@@ -163,9 +168,7 @@ function Diagnosis() {
               </div>
             )}
           </div>
-        </div>*/
-      }
-      
+        </div>*/}
     </>
   );
 }
