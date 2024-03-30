@@ -20,4 +20,4 @@
 
 - Continuous Innovation and Improvement
 
-  - Committed to continuous innovation, AAmrit evolves with emerging technologies and healthcare trends, integrating additional ML models and expanding diagnostic capabilities to enhance patient care outcomes.
+  - Committed to continuous innovation, Amrit evolves with emerging technologies and healthcare trends, integrating additional ML models and expanding diagnostic capabilities to enhance patient care outcomes.
