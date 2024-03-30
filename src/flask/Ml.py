@@ -7,7 +7,7 @@ import torch
 import torchvision
 
 app = Flask(__name__)
-CORS(app, resources={r"/predict": {"origins": "http://localhost:5173"}})  # Allow requests from localhost:5173
+CORS(app, resources={r"/predict": {"origins": "*"}})  # Allow requests from all origins
 
 # Load the pre-trained model
 model = xrv.models.DenseNet(weights="densenet121-res224-all")
@@ -37,11 +37,11 @@ def process_image(image_path):
 @app.route('/predict', methods=['POST'])
 def predict():
     if 'image' not in request.files:
-        return jsonify({'error': 'No image provided'})
+        return jsonify({'error': 'No image provided'}), 400
 
     image = request.files['image']
     if image.filename == '':
-        return jsonify({'error': 'No selected file'})
+        return jsonify({'error': 'No selected file'}), 400
 
     # Save the image temporarily
     image_path = 'temp_image.jpg'
@@ -54,7 +54,13 @@ def predict():
     import os
     os.remove(image_path)
 
-    return jsonify(predictions)
+    # Convert float32 values to float
+    predictions = {k: float(v) for k, v in predictions.items()}
+
+    # Create response with CORS headers
+    response = jsonify(predictions)
+    response.headers.add('Access-Control-Allow-Origin', '*')
+    return response
 
 if __name__ == '__main__':
     app.run(debug=True)
