@@ -95,7 +95,7 @@ export default function DocLogin() {
                 </button>
               </div>
             </form>
-            <div className="mt-4 flex flex-col lg:items-center lg:justify-between">
+            {/* <div className="mt-4 flex flex-col lg:items-center lg:justify-between">
               <div className="w-full lg:w-1/2 mb-2 lg:mb-0">
                 <button
                   onClick={handleGoogleLogin}
@@ -128,7 +128,7 @@ export default function DocLogin() {
                   Login with Google{" "}
                 </button>
               </div>
-            </div>
+            </div> */}
           </div>
         </div>
       </div>

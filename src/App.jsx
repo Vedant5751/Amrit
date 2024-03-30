@@ -10,6 +10,7 @@ import DocPatient from "./pages/DocPatient";
 import Diagnosis from "./pages/Diagnosis";
 import Calendar from "./pages/Calendar";
 import Inbox from "./pages/Inbox";
+import PatientInbox from "./pages/PatientInbox";
 import DocProfile from "./pages/DocProfile";
 
 function App() {
@@ -28,6 +29,7 @@ function App() {
           <Route path="/diagnosis" element={<Diagnosis />} />
           <Route path="/calendar" element={<Calendar />} />
           <Route path="/inbox" element={<Inbox />} />
+          <Route path="/patientinbox" element={<PatientInbox />} />
           <Route path="/docprofile" element={<DocProfile />} />
         </Routes>
       </Router>
