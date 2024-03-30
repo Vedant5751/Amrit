@@ -33,8 +33,19 @@ const AI = () => {
       setPredictions(response.data);
       setError(null);
     } catch (error) {
-      console.error("Error uploading file: ", error);
-      setError("Error uploading file. Please try again later.");
+      if (error.response) {
+        
+        setError(`Server responded with status ${error.response.status}`);
+        console.error("Server error:", error.response.data);
+      } else if (error.request) {
+        
+        setError("No response received from server");
+        console.error("No response received:", error.request);
+      } else {
+        
+        setError("Error uploading file. Please try again later.");
+        console.error("Error uploading file:", error.message);
+      }
     }
   };
 
