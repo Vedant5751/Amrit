@@ -12,6 +12,7 @@ import Calendar from "./pages/Calendar";
 import Inbox from "./pages/Inbox";
 import PatientInbox from "./pages/PatientInbox";
 import DocProfile from "./pages/DocProfile";
+import PatientReport from "./pages/PatientReport";
 import AI from '../src/components/AI'
 
 function App() {
@@ -31,6 +32,7 @@ function App() {
           <Route path="/calendar" element={<Calendar />} />
           <Route path="/inbox" element={<Inbox />} />
           <Route path="/patientinbox" element={<PatientInbox />} />
+          <Route path="/patientreport" element={<PatientReport />} />
           <Route path="/docprofile" element={<DocProfile />} />
         </Routes>
       </Router>

@@ -6,7 +6,7 @@ export default function DocLogin() {
   const navigate = useNavigate();
 
   const Submit = () => {
-    navigate("/patienthome");
+    navigate("/patientreport");
   };
 
   return (
