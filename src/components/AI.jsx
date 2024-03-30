@@ -39,24 +39,28 @@ const AI = () => {
   };
 
   return (
-    <div>
-      <div>
-        <Sidebar/>
-      </div>
+    <div className="flex flex-col justify-center items-center">
+      <Sidebar />
       <input
         type="file"
         accept=".jpg, .jpeg, .png"
         onChange={handleFileChange}
+        className="border border-gray-300 rounded-md p-2 mt-4"
       />
-      <button onClick={handleUpload}>Upload</button>
-      {error && <p>{error}</p>}
+      <button
+        onClick={handleUpload}
+        className="bg-blue-500 text-white font-semibold px-4 py-2 rounded-md mt-2"
+      >
+        Upload
+      </button>
+      {error && <p className="text-red-500 mt-2">{error}</p>}
       {predictions && (
-        <div>
-          <h2>Predictions</h2>
-          <ul>
+        <div className="mt-4">
+          <h2 className="text-xl font-semibold">Predictions</h2>
+          <ul className="list-disc ml-6">
             {Object.entries(predictions).map(([key, value]) => (
-              <li key={key}>
-                {key}: {value}
+              <li key={key} className="mt-2">
+                <span className="font-semibold">{key}:</span> {value}
               </li>
             ))}
           </ul>
